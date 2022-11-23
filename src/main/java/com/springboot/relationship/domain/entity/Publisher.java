@@ -23,6 +23,6 @@ public class Publisher {
     private String publisherName;
     private String publisherAddress;
 
-    @OneToOne(mappedBy = "publisher")
-    private Book book;
+    @OneToMany(mappedBy = "publisher")
+    private List<Book> books;
 }

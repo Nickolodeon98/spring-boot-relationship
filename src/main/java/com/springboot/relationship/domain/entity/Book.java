@@ -22,7 +22,7 @@ public class Book {
     @ManyToOne
     private Author author;
 
-    @OneToOne
+    @ManyToOne
     private Publisher publisher;
 
     @Override
