@@ -1,5 +1,6 @@
 package com.springboot.relationship.domain.entity;
 
+import com.springboot.relationship.domain.dto.BookResponse;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,5 +28,9 @@ public class Book {
     @Override
     public String toString() {
         return bookTitle;
+    }
+
+    public static BookResponse of(Book book) {
+        return new BookResponse(book.getId(), book.getBookTitle(), book.getAuthor().getAuthorName());
     }
 }

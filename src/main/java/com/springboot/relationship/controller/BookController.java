@@ -1,12 +1,15 @@
 package com.springboot.relationship.controller;
 
+import com.springboot.relationship.domain.dto.BookResponse;
 import com.springboot.relationship.domain.entity.Book;
 import com.springboot.relationship.service.AuthorService;
 import com.springboot.relationship.service.BookService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,14 +26,13 @@ public class BookController {
     }
 
     @GetMapping("/all")
-    public String selectEveryBook() {
+    public ResponseEntity<List<BookResponse>> selectEveryBook() {
         List<Book> books = bookService.getAllBooks();
-        StringBuilder sb = new StringBuilder();
+        List<BookResponse> foundBooks = new ArrayList<>();
         for (Book book : books) {
-            sb.append(book.toString());
-            sb.append(authorService.getSingleAuthor(book.getAuthor().getId()).toString());
+            foundBooks.add(Book.of(book));
         }
-        return sb.toString();
+        return ResponseEntity.ok().body(foundBooks);
     }
 }
 
