@@ -22,7 +22,7 @@ public class Book {
     @ManyToOne
     private Author author;
 
-    @ManyToOne
+    @OneToOne
     private Publisher publisher;
 
     @Override
@@ -31,6 +31,6 @@ public class Book {
     }
 
     public static BookResponse of(Book book) {
-        return new BookResponse(book.getId(), book.getBookTitle(), book.getAuthor().getAuthorName());
+        return new BookResponse(book.getId(), book.getBookTitle(), book.getAuthor().getAuthorName(), book.getPublisher().getPublisherName());
     }
 }

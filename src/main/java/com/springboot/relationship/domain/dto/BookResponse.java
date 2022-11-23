@@ -13,6 +13,7 @@ public class BookResponse {
     private Integer id;
     private String bookTitle;
     private String authorName;
+    private String publisherName;
 
     @Override
     public String toString() {
