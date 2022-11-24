@@ -30,7 +30,7 @@ public class HospitalController {
 //        for (String str : hospital.getReviews()) {
 //            log.info(str);
 //        }
-        String ret = String.format(hospital.getRoadNameAddress() + " " + hospital);
+        String ret = String.format(hospital.getRoadNameAddress() + " " + hospital.getReviews());
         return ResponseEntity.ok().body(ret);
     }
 
@@ -41,4 +41,11 @@ public class HospitalController {
         ReviewResponse reviewResponse = Review.of(reviewService.registerReview(review));
         return ResponseEntity.ok().body(reviewResponse);
     }
+
+    @GetMapping("/review/{id}")
+    public ResponseEntity<ReviewResponse> showAReview(@PathVariable Integer id) {
+        return ResponseEntity.ok().body(reviewService.selectSingleReview(id));
+    }
+
+
 }

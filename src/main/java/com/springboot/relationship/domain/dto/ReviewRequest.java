@@ -21,4 +21,8 @@ public class ReviewRequest {
                 .contents(this.contents)
                 .build();
     }
+//    {
+//        "title":"제목",
+
+//    }
 }
