@@ -14,6 +14,8 @@ import java.util.List;
 public class HospitalResponse {
 
     private Integer id;
+
+    private String hospitalName;
     private String roadNameAddress;
 
     private List<Review> reviews;

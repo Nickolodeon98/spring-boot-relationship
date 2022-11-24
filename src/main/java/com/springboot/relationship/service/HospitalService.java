@@ -27,6 +27,6 @@ public class HospitalService {
 //        for (Review review : hospital.getReviews()) {
 //            list.add(review.getTitle());
 //        }
-        return new HospitalResponse(hospital.getId(), hospital.getRoadNameAddress(), hospital.getReviews());
+        return new HospitalResponse(hospital.getId(), hospital.getHospitalName(), hospital.getRoadNameAddress(), hospital.getReviews());
     }
 }

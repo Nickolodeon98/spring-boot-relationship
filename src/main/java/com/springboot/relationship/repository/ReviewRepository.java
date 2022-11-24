@@ -1,6 +1,8 @@
 package com.springboot.relationship.repository;
 
 import com.springboot.relationship.domain.entity.Review;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
