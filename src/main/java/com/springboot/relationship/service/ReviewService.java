@@ -13,7 +13,7 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
-    public void registerReview(Review review) {
-        reviewRepository.save(review);
+    public Review registerReview(Review review) {
+        return reviewRepository.save(review);
     }
 }
