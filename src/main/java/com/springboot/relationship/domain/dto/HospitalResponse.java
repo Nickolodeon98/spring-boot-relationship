@@ -13,12 +13,14 @@ import java.util.List;
 @Getter
 public class HospitalResponse {
 
+    private Integer id;
     private String roadNameAddress;
 
     private List<Review> reviews;
 
     public Hospital toEntity() {
         return Hospital.builder()
+                .id(id)
                 .roadNameAddress(this.roadNameAddress)
                 .build();
     }
