@@ -1,5 +1,7 @@
 package com.springboot.relationship.domain.entity;
 
+import com.springboot.relationship.domain.dto.HospitalResponse;
+import com.springboot.relationship.domain.dto.ReviewResponse;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,6 +13,7 @@ import javax.persistence.*;
 @Setter
 @Table(name = "review")
 @ToString
+@Builder
 public class Review {
 
     @Id
@@ -24,4 +27,16 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "hospital_id")
     private Hospital hospital;
+
+    public void setHospital(HospitalResponse hospitalResponse) {
+        this.hospital = hospitalResponse.toEntity();
+    }
+
+    public static ReviewResponse of(Review review) {
+        return ReviewResponse.builder()
+                .contents(review.getContents())
+                .patientName(review.getPatientName())
+                .title(review.getTitle())
+                .build();
+    }
 }
