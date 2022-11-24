@@ -1,5 +1,6 @@
 package com.springboot.relationship.domain.dto;
 
+import com.springboot.relationship.domain.entity.Hospital;
 import com.springboot.relationship.domain.entity.Review;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,4 +16,10 @@ public class HospitalResponse {
     private String roadNameAddress;
 
     private List<Review> reviews;
+
+    public Hospital toEntity() {
+        return Hospital.builder()
+                .roadNameAddress(this.roadNameAddress)
+                .build();
+    }
 }
