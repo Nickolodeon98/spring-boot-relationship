@@ -1,9 +1,6 @@
 package com.springboot.relationship.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,11 +10,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Setter
 @Table(name = "review")
+@ToString
 public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String title;
     private String patientName;
@@ -26,5 +24,4 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "hospital_id")
     private Hospital hospital;
-
 }
