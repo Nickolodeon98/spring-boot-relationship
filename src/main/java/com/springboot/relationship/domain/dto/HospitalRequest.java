@@ -1,28 +1,20 @@
 package com.springboot.relationship.domain.dto;
 
 import com.springboot.relationship.domain.entity.Hospital;
-import com.springboot.relationship.domain.entity.Review;
 import lombok.*;
 
-import java.util.List;
-
-@Builder
-@AllArgsConstructor
 @Getter
-@NoArgsConstructor
+@AllArgsConstructor
 @Setter
-public class HospitalResponse {
-
-    private Integer id;
-
+@NoArgsConstructor
+@Builder
+public class HospitalRequest {
     private String hospitalName;
     private String roadNameAddress;
 
-    private List<ReviewResponse> reviews;
-
     public Hospital toEntity() {
         return Hospital.builder()
-                .id(id)
+                .hospitalName(this.hospitalName)
                 .roadNameAddress(this.roadNameAddress)
                 .build();
     }

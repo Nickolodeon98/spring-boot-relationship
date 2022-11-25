@@ -37,6 +37,7 @@ public class Review {
                 .contents(review.getContents())
                 .patientName(review.getPatientName())
                 .title(review.getTitle())
+                .hospitalName(review.getHospital().getHospitalName())
                 .build();
     }
 }

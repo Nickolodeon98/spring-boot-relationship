@@ -1,5 +1,6 @@
 package com.springboot.relationship.controller;
 
+import com.springboot.relationship.domain.dto.HospitalRequest;
 import com.springboot.relationship.domain.dto.HospitalResponse;
 import com.springboot.relationship.domain.dto.ReviewRequest;
 import com.springboot.relationship.domain.dto.ReviewResponse;
@@ -26,14 +27,23 @@ public class HospitalController {
         this.reviewService = reviewService;
     }
 
+    @PostMapping("/new")
+    public ResponseEntity<HospitalResponse> addNewHospital(@RequestBody HospitalRequest hospitalRequest) {
+        HospitalResponse savedHospital = hospitalService.addNewHospital(hospitalRequest);
+        log.info(savedHospital.getHospitalName());
+        return ResponseEntity.ok().body(savedHospital);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<HospitalResponse>> findAllHospitals() {
+        List<HospitalResponse> foundHospitals = hospitalService.selectAllHospitals();
+        return ResponseEntity.ok().body(foundHospitals);
+    }
+
     @GetMapping("/{id}/reviews")
-    public ResponseEntity<String> getReviewsForHospital(@PathVariable Integer id) {
+    public ResponseEntity<List<ReviewResponse>> getReviewsForHospital(@PathVariable Integer id) {
         HospitalResponse hospital = hospitalService.getHospitalInfo(id);
-//        for (String str : hospital.getReviews()) {
-//            log.info(str);
-//        }
-        String ret = String.format(hospital.getRoadNameAddress() + " " + hospital.getReviews());
-        return ResponseEntity.ok().body(ret);
+        return ResponseEntity.ok().body(hospital.getReviews());
     }
 
     @PostMapping("/{id}/feedback")

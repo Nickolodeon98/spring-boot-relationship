@@ -1,11 +1,14 @@
 package com.springboot.relationship.domain.entity;
 
 import com.springboot.relationship.domain.dto.HospitalResponse;
+import com.springboot.relationship.domain.dto.ReviewResponse;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.sound.sampled.ReverbType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,14 +30,12 @@ public class Hospital {
     private List<Review> reviews = new ArrayList<>();
 
     public static HospitalResponse of(Hospital hospital) {
-        List<Review> toConvert = hospital.getReviews();
-//        List<String> converted = new ArrayList<>();
-//        for (Review review : toConvert) {
-//            converted.add(review.getTitle());
-//        }
+        List<ReviewResponse> converted = hospital.getReviews().stream().map(review -> Review.of(review)).collect(Collectors.toList());
         return HospitalResponse.builder()
+                .id(hospital.getId())
+                .hospitalName(hospital.getHospitalName())
                 .roadNameAddress(hospital.getRoadNameAddress())
-                .reviews(hospital.getReviews())
+                .reviews(converted)
                 .build();
     }
 }
